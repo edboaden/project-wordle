@@ -4,12 +4,13 @@
 html {
   overflow-y: scroll;
 
-  --game-spacing: 32px;
+  --game-spacing: 2rem;
   --header-height: 4rem;
+  --radius: 2px;
 
-  --color-success: hsl(150deg 70% 30%);
-  --color-warning: hsl(50deg 100% 30%);
-  --color-error: hsl(0deg 70% 45%);
+  --color-success: hsl(324, 77%, 72%);
+  --color-warning: hsl(27, 63%, 65%);
+  --color-error: hsl(0, 80%, 59%);
   --color-gray-100: hsl(0deg 0% 10%);
   --color-gray-300: hsl(0deg 0% 25%);
   --color-gray-500: hsl(0deg 0% 50%);
@@ -21,14 +22,15 @@ html {
   Custom styles
 */
 body {
-  font-family: sans-serif;
+  font-family: "Karla", sans-serif;
+  background-color: var(--color-gray-900);
 }
 
-@media (max-height: 600px) {
+/* @media (max-height: 600px) {
   body {
     --game-spacing: 8px;
   }
-}
+} */
 
 button {
   margin: 0;
@@ -48,9 +50,10 @@ button {
 
 header {
   display: flex;
-  height: var(--header-height);
+  /* height: var(--header-height); */
   border-bottom: 1px solid var(--color-gray-700);
   color: var(--color-gray-300);
+  padding: 1rem;
 }
 
 header .side {
@@ -61,23 +64,25 @@ header .side {
 
 h1 {
   flex: 1;
-  font-size: 2rem;
-  line-height: var(--header-height);
+  font-size: 1rem;
+  /* line-height: var(--header-height); */
+  letter-spacing: 1px;
   text-align: center;
+  text-transform: uppercase;
 }
 
-@media (max-width: 25rem) {
+/* @media (max-width: 25rem) {
   h1 {
     font-size: 1.25rem;
   }
-}
+} */
 
 .game-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: var(--game-spacing);
-  padding: var(--game-spacing) 32px;
+  padding: var(--game-spacing) 2rem;
   margin: 0 auto;
   min-width: 250px;
   max-width: min(500px, 58vh, 100%);
@@ -88,12 +93,14 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 .guess {
   display: flex;
-  gap: 4px;
-  margin-bottom: 4px;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .cell {
@@ -102,7 +109,7 @@ h1 {
   display: grid;
   place-content: center;
   aspect-ratio: 1 / 1;
-  border: 2px solid var(--color-gray-700);
+  border: 1px solid var(--color-gray-700);
   border-radius: var(--radius);
   font-size: 2rem;
 }
@@ -111,7 +118,7 @@ h1 {
   Round the corners for the 4 cells at the very corners of
   the game board
 */
-.guess:first-of-type .cell:first-of-type {
+/* .guess:first-of-type .cell:first-of-type {
   --radius: 4px 0px 0px 0px;
 }
 .guess:first-of-type .cell:last-of-type {
@@ -122,7 +129,7 @@ h1 {
 }
 .guess:last-of-type .cell:first-of-type {
   --radius: 0px 0px 0px 4px;
-}
+} */
 
 .cell.correct {
   background: var(--color-success);
@@ -155,32 +162,33 @@ h1 {
   display: block;
   width: 100%;
   font-size: 2rem;
-  border: 2px solid var(--color-gray-300);
+  /* background-color: var(--color-gray-900); */
+  border: 1px solid var(--color-gray-700);
   border-radius: 4px;
   padding: 8px 16px;
   outline-offset: 4px;
 }
 
 .banner {
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 32px;
+  padding: 1rem;
   text-align: center;
   animation: slideUp 750ms cubic-bezier(0, 0.72, 0.24, 1.02);
-  border-radius: 4px 4px 0px 0px;
+  border-radius: var(--radius);
   will-change: transform;
 }
 
-.happy.banner {
+.win.banner {
   background: var(--color-success);
   color: white;
 }
-.sad.banner {
+.lose.banner {
   background: var(--color-error);
   color: white;
 }
